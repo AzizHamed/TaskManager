@@ -1,6 +1,7 @@
 package com.example.TaskManager.service;
 
 import com.example.TaskManager.documents.Task;
+import com.example.TaskManager.enums.Status;
 import com.example.TaskManager.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,17 @@ public class TaskService {
             return null;
         }
        return task;
+    }
+
+    public Task updateTaskStatus(String taskId, Status status) {
+        Task task;
+        try {
+            task = taskRepository.findById(taskId).get();
+        }catch (NoSuchElementException e){
+            return null;
+        }
+        task.setStatus(status);
+        taskRepository.save(task);
+        return task;
     }
 }
