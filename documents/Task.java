@@ -27,8 +27,6 @@ public class Task {
 
     private Date lastDate;
 
-    @NonNull
-    private User user;
 
     private Status status = Status.InProgress;
 }
